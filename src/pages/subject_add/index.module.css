@@ -1,0 +1,48 @@
+.wrap {
+  height: calc(100vh - 150px);
+  background-color: pink;
+}
+
+.top {
+  height: 50px;
+  display: flex;
+  background-color: #ccc;
+}
+.top_left {
+  min-width: 200px;
+  margin-left: 20px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 20px;
+  border-left: 5px solid #1880ff;
+}
+.top_right {
+  width: 300px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.add_button {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.content {
+  display: flex;
+  height: calc(100vh - 200px);
+  background-color: pink;
+}
+
+.left {
+  background-color: yellow;
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.right {
+  background-color: lightblue;
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+}

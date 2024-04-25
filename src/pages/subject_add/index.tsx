@@ -1,30 +1,36 @@
 import styles from './index.module.css';
 import React, { useEffect } from 'react';
 import { Button, TreeSelect } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSubjectTreeAsync } from '../../store/slice/subject';
-import { AppDispatch } from '@/store';
-import { selectSubjectTree, selectSubjectActiveTwo } from '@/store/slice/subject';
-import { setSubjectActiveTwo } from '../../store/slice/subject';
+import { useSelector } from 'react-redux';
+import { get_subject_tree_async, get_topic_two_list } from '../../store/slice/subject';
+import { useAppDispatch } from '@/store';
+import { select_subject_tree, select_active_two } from '@/store/slice/subject';
+import { set_active_two } from '../../store/slice/subject';
+import RightContent from '@/pages/subject_add/rightContent';
+import LeftContent from '@/pages/subject_add/leftContent';
 
 
 function StudentAdd() {
-    const dispatch: AppDispatch = useDispatch();
-    const treeData = useSelector(selectSubjectTree);
-    const activeTwo = useSelector(selectSubjectActiveTwo);
+    const dispatch = useAppDispatch();
+    const treeData = useSelector(select_subject_tree);
+    const activeTwo: any = useSelector(select_active_two);
 
     useEffect(() => {
-        dispatch(getSubjectTreeAsync()).then((res) => {
+        dispatch(get_subject_tree_async()).then((res) => {
             console.log('res', res)
             const activeTwoSubject = res.payload[0].children[0];
-            dispatch(setSubjectActiveTwo(activeTwoSubject))
+            dispatch(set_active_two(activeTwoSubject))
         });
     }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(get_topic_two_list(activeTwo.value))
+    }, [dispatch, activeTwo.value])
 
 
     const onChange = (newValue: string, nameArr: any) => {
         console.log(newValue, nameArr);
-        dispatch(setSubjectActiveTwo({
+        dispatch(set_active_two({
             title: nameArr[0],
             value: newValue,
         }));
@@ -52,10 +58,10 @@ function StudentAdd() {
             </div>
             <div className={styles.content}>
                 <div className={styles.left}>
-                    <h1>left</h1>
+                    <LeftContent />
                 </div>
                 <div className={styles.right}>
-                    <h1>right</h1>
+                    <RightContent />
                 </div>
             </div>
 

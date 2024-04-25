@@ -1,0 +1,17 @@
+.wrap{
+
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right{
+
+}
+
+.right_span {
+  color: red;
+  cursor: pointer;
+}

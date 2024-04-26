@@ -1,0 +1,102 @@
+// 带有左侧border的标题mixin
+@mixin custom-title($fontSize: 20px, $width: 4px, $height: 20px, $gap: 8px) {
+  display: flex;
+  column-gap: $gap;
+  align-items: center;
+  font-size: $fontSize;
+  user-select: none;
+
+  &::before {
+    content: '';
+    display: block;
+    width: $width;
+    height: $height;
+    background: #1880ff;
+  }
+}
+
+.wrap {
+  min-height: 500px;
+  padding: 0 40px 28px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background-color: #fff;
+
+  :global {
+    .title-bar {
+      display: flex;
+      align-items: center;
+      column-gap: 20px;
+      border-bottom: 1px solid #ddd;
+
+      p.title {
+        @include custom-title();
+      }
+
+      .lesson-select {
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+      }
+    }
+
+    .content {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 8px;
+      height: 632px;
+
+      .left,
+      .right {
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          width: 8px;
+          background-color: #ffffff;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #f5f5f5;
+          border-radius: 4px;
+          width: 8px;
+        }
+      }
+
+      .left {
+        padding: 10px 0;
+        .topic-list {
+          .topic-item {
+            display: flex;
+            padding: 6px 10px 6px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.25s ease;
+
+            &.active {
+              background: #f5f5f5;
+            }
+          }
+        }
+      }
+
+      .right {
+        padding: 10px 20px;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        background: #f2f4f7;
+        border-radius: 8px;
+
+        .ant-upload-wrapper .ant-upload-list-picture-card .ant-upload-list-item-container {
+          width: 300px;
+          height: 300px;
+        }
+
+        p.title {
+          @include custom-title(16px, 3px, 15px);
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

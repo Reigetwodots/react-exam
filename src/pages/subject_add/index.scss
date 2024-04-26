@@ -1,0 +1,10 @@
+.subject-add-tree-select {
+  .ant-select-tree {
+    // 覆盖被禁用的树选择样式 还原default style
+    .ant-select-tree-treenode-disabled {
+      .ant-select-tree-node-content-wrapper {
+        color: unset;
+      }
+    }
+  }
+}

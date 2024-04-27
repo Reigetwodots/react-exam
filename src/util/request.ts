@@ -1,6 +1,6 @@
 import axios from './http';
 
-type AxiosRes<T = ResData> = {
+export type AxiosRes<T = ResData> = {
   config: Object;
   data: T;
   headers: any;
@@ -30,6 +30,7 @@ export type UserInfo = {
   graduation_time: Date; // 毕业时间
   money: number; // 现在薪资
   role: Role; // 角色
+  edu: string; // 学历
   _id: string;
   has_person_info: boolean; // 是否填写个人信息
   topic_role: []; // 课程权限列表
@@ -37,40 +38,40 @@ export type UserInfo = {
 };
 
 export type MenuData = {
-  hasMenu: boolean;
-  key: string;
-  label: string;
-  path: string;
+  hasMenu: boolean; // 是否有菜单
+  key: string; // 菜单key
+  label: string; // 菜单名
+  path: string; // 菜单路径
 };
 
 export type SubjectData = {
-  title: string;
-  value: string;
-  children: SubjectData[];
-  can_exam: boolean;
+  title: string; // 课程名
+  value: string; // 课程id
+  children: SubjectData[]; // 二级课程分类
+  can_exam: boolean; // 是否可以考试
 };
 
 export type TopicData = {
-  dec: string;
-  title: string;
-  two_id: string;
-  _id: string;
-  img: string[];
-  answer: string;
-  comment: string;
-  pass: boolean;
-  is_corret: boolean;
+  dec: string; // 题目描述
+  title: string; // 题目标题
+  two_id: string; // 二级课程id
+  _id: string; // 题目id
+  img: string[]; // 图片
+  answer: string; // 答案
+  comment: string; // 评语
+  pass: boolean; // 是否通过
+  is_corret: boolean; // 是否批阅
 };
 
 export type ExamData = {
-  created: Date;
-  is_judge: boolean;
-  subject_name: string;
-  topic_list: TopicData[];
-  two_id: string;
-  user_id: string;
-  user_name: string;
-  _id: string;
+  created: Date; // 创建时间
+  is_judge: boolean; // 是否批阅
+  subject_name: string; // 课程名
+  topic_list: TopicData[]; // 题目列表
+  two_id: string; // 二级课程id
+  user_id: string; // 用户id
+  user_name: string; // 用户名
+  _id: string; // 试卷id
 };
 
 // export type SubjectTreeType = SubjectData[]
@@ -201,7 +202,6 @@ export function getSubejctOne() {
 }
 
 // 课程新增
-
 export type AddSubject2Body = {
   one_key: string;
   two_name: string;

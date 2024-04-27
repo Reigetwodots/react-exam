@@ -1,17 +1,22 @@
 import { useLocation } from "react-router-dom";
-import { type RouterKey, routersData } from "../config";
+import { type RouterKey } from "../config";
+import { useAppSelector } from "@/store";
+import { select_menu } from "@/store/slice/user";
 
 function useIsShowMenu() {
     const location = useLocation();
-    console.log('location', location)
-
+    const menus = useAppSelector(select_menu) // 获取菜单
     const key: RouterKey = location.pathname.split('/')[1] as RouterKey
 
-    if (!key) {
+    if (!key || !menus.length) {
         return false
     }
 
-    if (routersData[key].hasMenu) {
+    const menu = menus.find((item) => {
+        return item.key === key
+    })
+
+    if (menu?.hasMenu) {
         return true
     } else {
         return false

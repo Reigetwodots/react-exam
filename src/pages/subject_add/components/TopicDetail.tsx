@@ -8,19 +8,12 @@ import CustomUpload from '@/common_components/Upload'
 import { useAppDispatch, useAppSelector } from '@/store'
 
 export default function TopicDetail() {
-    const [loading, setLoading] = useState(false)
-    const [fileList, setFileList] = useState<UploadFile[]>([])
-
-
+    const [loading, setLoading] = useState(false) // 提交按钮loading状态
+    const [fileList, setFileList] = useState<UploadFile[]>([]) // 图片列表
     const currentlesson = useAppSelector(select_active_two)
-
     const currentTopic = useAppSelector(select_active_topic)
-
-
     const dispatch = useAppDispatch()
     const [form] = Form.useForm()
-
-
 
     // 组件卸载时把当前选择的数据删除
     useEffect(() => {
@@ -31,13 +24,15 @@ export default function TopicDetail() {
     }, [])
     useEffect(() => {
         if (!currentTopic) {
-            reset()
+            reset() // 重置表单
         } else {
             form.setFieldsValue(currentTopic)
-            if (currentTopic.img?.length) {
+            if (currentTopic.img?.length) { // 如果有图片
                 setFileList(
                     currentTopic.img.map((url) => {
+                        // console.log('@@@@@url', url)
                         const fileName = url.split('/').at(-1)!
+                        // console.log('@@@@@fileName', fileName)
                         return {
                             uid: fileName,
                             name: fileName,
@@ -46,21 +41,21 @@ export default function TopicDetail() {
                         }
                     })
                 )
+                // console.log('@@@@@currentTopic', currentTopic)
             } else {
                 setFileList([])
             }
         }
     }, [currentTopic?._id])
 
-
-
     // 重置表单
     const reset = () => {
         form.resetFields()
         setFileList([])
     }
+    // 图片上传
     const handleImgChange: UploadProps['onChange'] = async (fileInfo: UploadChangeParam) => {
-        setFileList(fileInfo.fileList.map((item) => ({ ...item, status: 'done' })))
+        setFileList(fileInfo.fileList.map((item) => ({ ...item, status: 'done' }))) // 上传中的状态改为上传完成
     }
     const submit = async (data: any) => {
         setLoading(true)
@@ -75,7 +70,6 @@ export default function TopicDetail() {
         } else {
             data.img = []
         }
-
         try {
             // 编辑时 todo：
             if (currentTopic) {
@@ -89,7 +83,6 @@ export default function TopicDetail() {
                 // 新增时
                 // 提交数据
                 await request.post(`/api/topic`, { ...data, two_id: currentlesson!.value })
-
                 reset()
             }
             dispatch(get_topic_two_list(currentlesson!.value))

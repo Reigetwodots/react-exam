@@ -1,0 +1,64 @@
+@mixin circle($width, $bgColor) {
+	width: $width;
+	height: $width;
+	background-color: $bgColor;
+	border-radius: 50%;
+}
+
+.wrap {
+	padding: 0 80px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+	user-select: none;
+
+	// header内元素高度
+	$height: 44px;
+
+	:global {
+		.logo {
+			height: $height;
+			cursor: pointer;
+			img {
+				height: 100%;
+			}
+		}
+
+		.info {
+			display: flex;
+			column-gap: 24px;
+
+			.message {
+				@include circle($height, #f2f4f7);
+				background-image: url('./assets/message.png');
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: 40px;
+				cursor: pointer;
+			}
+
+			.profile {
+				display: flex;
+				align-items: center;
+				column-gap: 8px;
+
+				.avatar {
+					cursor: pointer;
+					border: 2px solid #dddddd50;
+					box-shadow: 0 0 10px 0 #dddddd50;
+
+					img {
+						width: 100%;
+						height: 100%;
+						object-fit: contain;
+					}
+				}
+
+				.name {
+					font-size: 14px;
+				}
+			}
+		}
+	}
+}

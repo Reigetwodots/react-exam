@@ -3,28 +3,18 @@ import classNames from 'classnames'
 import { select_topic_two_list, select_active_two, get_topic_two_list, select_subject_loading, set_subject_active_topic, select_active_topic } from '@/store/slice/subject'
 import request from '@/util/http'
 import { useAppDispatch, useAppSelector } from '@/store'
-import { useCallback } from 'react'
 import useRenderCheck from '../../../hooks/renderCheck'
 
 
 export default function TopicList() {
 
     let list = useAppSelector(select_topic_two_list)
-
-
-
-
     const loading = useAppSelector(select_subject_loading)
-
     // 还要优化空间
     const currentlesson = useAppSelector(select_active_two)
-
     const currentTopic = useAppSelector(select_active_topic)
-
     const dispatch = useAppDispatch()
-
     useRenderCheck('TopicList')
-
     // 删除题目
     const deleteTopic = async (id: string) => {
         try {
@@ -36,22 +26,14 @@ export default function TopicList() {
             if (currentTopic?._id === id) {
                 dispatch(set_subject_active_topic(null))
             }
-
             dispatch(get_topic_two_list(currentlesson!.value))
         } catch {
             message.error('删除失败')
         }
     }
 
-    function testClick() { }
-
-    // 同理，useMemo
-    const memoCb = useCallback(testClick, [])
-
     return (
         <Spin spinning={loading}>
-            {/* <TestMemo handleClick={memoCb} /> */}
-            {/* <TestRenderList list={list} /> */}
             {list.length ? (
                 <List
                     split={false}

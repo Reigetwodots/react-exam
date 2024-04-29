@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.scss';
 import Login from '@/pages/login';
@@ -15,8 +15,24 @@ import SubjectAdd from '@/pages/subject_add';
 import SubjectManage from '@/pages/subject_manage';
 import Layout from './common_components/layout';
 import { routersData } from './config';
+import { useAppDispatch } from './store';
+import { get_user_info } from './store/slice/user';
+import EventBus from '@/util/event'
+import { useNavigate } from 'react-router-dom';
 
 function App() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(get_user_info())
+
+    EventBus.on("global_not_login", function (msg) {
+      navigate('/login')
+    }
+    )
+  }, [])
+
   return (
     <Routes>
       <Route element={<Layout />}>

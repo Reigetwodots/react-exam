@@ -74,8 +74,6 @@ export type ExamData = {
   _id: string; // 试卷id
 };
 
-// export type SubjectTreeType = SubjectData[]
-
 //登录管理
 
 // 退出登录

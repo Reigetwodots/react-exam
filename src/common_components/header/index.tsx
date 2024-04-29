@@ -20,10 +20,7 @@ export default function Header() {
     const userinfo = useAppSelector(select_user_info) // 用户信息
 
     async function logout() {
-        // await logoutRequest()
-        const res = await axios.post('/api/user/logout')
-        console.log('@@@@@logout,res', res)
-        message.success('退出成功')
+        await logoutRequest()
         navigate('/login')
     }
 

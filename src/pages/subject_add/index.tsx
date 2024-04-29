@@ -19,10 +19,7 @@ function StudentAdd() {
         dispatch(get_subject_tree_async()).then((res: any) => {
             dispatch(set_subject_active_two(res.payload?.[0]?.children?.[0] as SubjectData))
         })
-    }, [dispatch])
-
-
-
+    }, [])
 
     return (
         <div className={styles.wrap}>

@@ -1,0 +1,12 @@
+{
+    "colors": [
+      { "name": "基础部分", "value": "#FF854D" },
+      { "name": "React", "value": "#36B0D4" },
+      { "name": "Vue", "value": "#3CAE79" },
+      { "name": "Node", "value": "#09620F" },
+      { "name": "WebGl", "value": "#894CE5" },
+      { "name": "小程序+微服务", "value": "#3DC77F" },
+      { "name": "错误监控体系", "value": "#FFA94D" },
+      { "name": "工程化及自动化", "value": "#1880FF" }
+    ]
+}

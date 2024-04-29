@@ -1,12 +1,24 @@
 .layout {
   .header_wrap {
     height: 80px;
-    background-color: pink;
+    // background: #ccc;
   }
+
   .nav_wrap {
-    color: blue;
+    margin-bottom: 10px;
   }
+
   .outlet_wrap {
-    color: green;
+    background: rgb(237, 236, 236);
+    padding: 30px;
+    min-height: calc(100vh - 150px);
   }
+}
+
+// .hide {
+//   display: none;
+// }
+
+.ant-menu-light {
+  border-radius: 5px;
 }

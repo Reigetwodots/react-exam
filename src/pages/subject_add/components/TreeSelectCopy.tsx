@@ -12,32 +12,24 @@ import { useAppDispatch, useAppSelector } from '@/store'
 import { SubjectData } from '../../../util/request';
 
 
-
 // 禁用含有children字段的项
 const disableHasChildrenItem = (items: SubjectData[]) => {
-    const _items = JSON.parse(JSON.stringify(items))
+    const _items = JSON.parse(JSON.stringify(items)) // 深拷贝
     return _items.map((item: SubjectData) => {
         if (item.children?.length > 0) {
             // @ts-ignore
-            item.disabled = true
-            item.children = disableHasChildrenItem(item.children)
+            item.disabled = true // 禁用
+            item.children = disableHasChildrenItem(item.children) // 递归
         }
         return item
     })
 }
 
 function TreeSelectCp() {
-
     const dispatch = useAppDispatch()
-
-    // 学科列表
-    const lessonList = useAppSelector(select_subject_tree)
-    // 学科列表memo 使父级不能选择
-    const lessonListMemo = lessonList.length ? disableHasChildrenItem(lessonList) : []
-
-    // 当前学科
-    const currentlesson = useAppSelector(select_active_two)
-
+    const lessonList = useAppSelector(select_subject_tree)    // 学科列表
+    const lessonListMemo = lessonList.length ? disableHasChildrenItem(lessonList) : []    // 学科列表memo 使父级不能选择
+    const currentlesson = useAppSelector(select_active_two)    // 当前学科
     // 获取题目列表
     useEffect(() => {
         if (!currentlesson?.value) return

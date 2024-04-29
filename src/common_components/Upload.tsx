@@ -25,7 +25,6 @@ export default function CustomUpload({ fileList, uploadProps }: CustomUploadProp
             {fileList.length < (_props?.maxCount || 1) && (
                 <div>
                     {false ? <LoadingOutlined /> : <PlusOutlined />}
-                    {/* <div style={{ marginTop: 8 }}>上传图片</div> */}
                 </div>
             )}
         </Upload>

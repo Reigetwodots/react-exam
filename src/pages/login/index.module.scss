@@ -1,0 +1,95 @@
+// :global {
+//   /* .layout .content_wrap {
+//       padding: 0 !important;
+//     } */
+// }
+
+.page_container {
+  position: relative;
+  height: 100vh;
+  background: url(./assets/login_bg.png) no-repeat;
+  background-size: cover;
+  overflow: auto;
+  .login_container {
+    width: 960px;
+    height: 600px;
+    background: #eff5ff;
+    border-radius: 16px;
+    box-shadow: 0px 2px 16px 0px rgba(235, 239, 243, 0.23);
+    display: flex;
+    position: relative;
+    top: calc(50% - 300px);
+    left: calc(50% - 480px);
+
+    .login_left {
+      width: 50%;
+
+      .left_title {
+        width: 340px;
+        height: 380px;
+        margin: 87px auto;
+      }
+    }
+
+    .login_right {
+      width: 50%;
+      box-sizing: border-box;
+      background: #ffffff;
+      height: 100%;
+      padding: 80px 40px 80px 33px;
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
+
+      .right_title {
+        display: flex;
+        align-items: center;
+
+        .title_container {
+          margin-left: 15px;
+        }
+      }
+
+      .right_form {
+        margin-top: 80px;
+
+        .form_btn {
+          margin-top: 80px;
+        }
+
+        .form_code_btn {
+          height: 30px;
+          line-height: 30px;
+          padding: 0 12px;
+          border-radius: 4px;
+          background: #f2f4f7;
+          color: #1880ff;
+          font-size: 12px;
+          position: absolute;
+          right: 5px;
+          top: 5px;
+          cursor: pointer;
+        }
+
+        .form_code_btn_disabled {
+          cursor: not-allowed;
+          opacity: 0.7;
+        }
+
+        :global {
+          .ant-form-item {
+            margin-bottom: 40px;
+          }
+
+          .ant-input-lg {
+            border-radius: 2px;
+          }
+
+          .ant-btn.ant-btn-lg {
+            width: 100%;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+  }
+}

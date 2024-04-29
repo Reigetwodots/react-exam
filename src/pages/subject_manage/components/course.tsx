@@ -24,13 +24,14 @@ export default function CourseAdd(props: CourseAddProps) {
   const [formRef] = Form.useForm(); // 表单
   const _handleOpen = () => { // 打开
     setIsModalOpen(true); // 设置打开
-    props.handleOk && props.handleOk();
+    props.handleOk && props.handleOk(); // 有确定回调就执行，没有就不执行
   }
-  const handleOk = () => { // 确定
+  const handleOk = () => {// 确定
     setSubmitLoading(true); // 设置提交中
     formRef.validateFields().then(async (formData) => {
-      await subjectAddPost(formData); // 新增课程
-      props.handleSuccess && props.handleSuccess(); // 成功回调
+      //console.log('@@@@@formData', formData) // formData是一个对象，里面是表单的值返回one_key："webpack"和two_name:"w1"
+      await subjectAddPost(formData); // axios post表单数据，新增课程
+      props.handleSuccess && props.handleSuccess(); // 有成功回调就执行，没有就不执行
       setIsModalOpen(false); // 设置关闭
     })
       .catch(console.error)
@@ -44,7 +45,7 @@ export default function CourseAdd(props: CourseAddProps) {
     setIsModalOpen(false); // 设置关闭
     props.handleCancel && props.handleCancel();
   }
-  const withOpen = (node: React.ReactElement) => { // 打开
+  const withOpen = (node: React.ReactElement) => {
     return <span onClick={_handleOpen}>{node}</span> // 点击打开
   }
   const getData = () => {
@@ -52,7 +53,7 @@ export default function CourseAdd(props: CourseAddProps) {
     setTimeout(() => {
       axios.get('/api/subject/one').then((res) => { // 获取一级课程
         return res.data.data
-      }).then(setOption) // 设置课程列表
+      }).then(setOption) // 返回是array，里面是对象，对象是name和key
       setLoading(false);
     }, 1)
   }
@@ -69,12 +70,14 @@ export default function CourseAdd(props: CourseAddProps) {
         withOpen(props.children) // 打开
       }
       <Modal
-        confirmLoading={submitLoading} // 确认加载
+        confirmLoading={submitLoading} // 确认加载中
         className={styles.modal}
         title="新增课程"
         open={isModalOpen} // 打开
         onOk={handleOk} // 确定
         onCancel={handleCancel} // 取消
+        okText="确定"
+        cancelText="取消"
       >
         <Form form={formRef}>
           <Form.Item
@@ -83,10 +86,10 @@ export default function CourseAdd(props: CourseAddProps) {
             rules={[{ required: true, message: '请选择课程类别' }]} // 规则
           >
             <Select
-              fieldNames={{ label: 'name', value: 'key' }} // 字段名
+              fieldNames={{ label: 'name', value: 'key' }} //在option中的只有name和key，label是选项的显示文本，value是选项的实际值
               loading={loading} // 加载中
-              airia-label="name" // 名称
-              options={option} // 选项
+              aria-label="name" // 如果一个使用屏幕阅读器的用户访问这个 Select 组件，屏幕阅读器会读出 "name"，以帮助用户理解这个组件的功能。
+              options={option} // 选择框的选项数据
             ></Select>
           </Form.Item>
           <Form.Item

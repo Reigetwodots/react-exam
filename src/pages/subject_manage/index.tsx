@@ -25,7 +25,8 @@ function SubjectManage() {
             dataIndex: "value",
             key: "value",
             width: 120,
-            render(a, b, c) {
+            render(a, b, c) // a: 是根据dataindex来显示的，如果是value那就是显示_id,如果的title那就是显示children b: 是数据对象 c: 当前行索引
+            {
                 return <span>{c + 1}</span>;
             },
         },
@@ -33,7 +34,7 @@ function SubjectManage() {
             title: "课程类别",
             dataIndex: "title",
             key: "title",
-            render(a, b) {
+            render(a, b, c) {
                 return <div>{b.parent || b.title}</div>;
             },
         },
@@ -44,7 +45,7 @@ function SubjectManage() {
         },
         {
             title: "操作",
-            render(_, b) {
+            render(a, b, c) {
                 return isDelete(b) ? (
                     <Button
                         onClick={handleDelete.bind(null, b.value, b.title, getRemoteData)}
@@ -57,13 +58,15 @@ function SubjectManage() {
             },
         },
     ];
-    const transformData = handleTransform(lessonList)
 
+    const transformData = handleTransform(lessonList) // 新增一个parent字段 等于父级课程title
 
     function getRemoteData() {
-        dispatch(get_subject_tree_async());
+        dispatch(get_subject_tree_async()); // 获取课程列表 在useEffect中调用
     }
+
     useEffect(getRemoteData, [dispatch]);
+
     return (
         <div className={`${styles.wrap} subject_manage_wrap`}>
             <div className={styles["my-4"]}>
@@ -73,11 +76,15 @@ function SubjectManage() {
                     </Button>
                 </CourseAdd>
             </div>
-            <div className={styles["my-4"]}>
-                <Table expandable={{
-                    defaultExpandAllRows: true
-                }} dataSource={transformData} columns={columns}></Table>
-            </div>
+            {transformData.length > 0 ? (
+                <Table
+                    expandable={{
+                        defaultExpandAllRows: true
+                    }}
+                    dataSource={transformData}
+                    columns={columns}
+                />
+            ) : null}
         </div>
     );
 }

@@ -1,7 +1,7 @@
 import { Modal } from "antd";
 import { subject2Delete } from '../../util/request';
 
-export interface Course { // 课程
+export interface Course {
     title: string;
     value: string;
 }

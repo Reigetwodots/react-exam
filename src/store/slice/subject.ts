@@ -29,15 +29,15 @@ type SubjectState = {
   current_exam_topic_id: string;
   exam_list_data: {
     list: [];
-    count: number;
-    limit: number;
-    skip: number;
-    search_params: {};
-    current_page: 1;
+    count: number; // 总数
+    limit: number; // 每页显示条数
+    skip: number; // 跳过条数
+    search_params: {}; // 搜索参数
+    current_page: 1; // 当前页数
   };
 
-  corret_exam_list_loading: boolean;
-  subject_one: any[];
+  corret_exam_list_loading: boolean; // 考试历史列表loading
+  subject_one: any[]; // 一级科目
 };
 
 const initialState = {

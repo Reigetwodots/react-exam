@@ -1,9 +1,9 @@
-function SubjectManage() {
+function StudentManage() {
     return (
         <div>
-            <h1>SubjectManage</h1>
+            学生管理
         </div>
-    );
+    )
 }
 
-export default SubjectManage;
+export default StudentManage

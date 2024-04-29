@@ -3,7 +3,13 @@ import styles from "./index.module.css";
 import { Button, } from 'antd';
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from '@/store';
-import { get_exam_async, select_exam_topic_list, set_current_exam_topic_id, select_current_exam_topic, set_exam_answer } from '../../store/slice/subject';
+import {
+    get_exam_async,
+    select_exam_topic_list,
+    set_current_exam_topic_id,
+    select_current_exam_topic,
+    set_exam_answer
+} from '../../store/slice/subject';
 import { examPost } from '../../util/request';
 import TopicCp from "@/common_components/topic";
 
@@ -94,9 +100,9 @@ function Exam() {
 
             <div className={styles.exam_right}>
                 <TopicCp
-                    type="exam"
-                    topic={current_exam_topic}
-                    answer_cb={submit_answer}
+                    type="exam" // 试卷
+                    topic={current_exam_topic} // 当前题目
+                    answer_cb={submit_answer} // 提交答案
                 />
                 <Button
                     type="primary"

@@ -12,40 +12,79 @@ type Iprops = { // 考试 批阅 查看
     answer_cb?: any
 }
 
-
 const TopicCp: React.FC<Iprops> = (props) => {
-    const [corret, setCorret] = useState(''); // 是否批阅
-    const [answer, setAnswer] = useState(''); // 当前题目的答案
-    // function corret_change(e: any) {
-    //     setCorret(e.target.value) // 设置是否批阅
-    // }
+
+    const [corret, set_corret] = useState('')
+    const [answer, set_answer] = useState('')
+    function corret_change(e: any) {
+        set_corret(e.target.value)
+    }
 
     function answer_change(e: any) {
-        setAnswer(e.target.value) // 设置答案
+        set_answer(e.target.value)
     }
 
     useEffect(() => {
-        setCorret(props.topic.comment) // 设置是否批阅
+        set_corret(props.topic.comment)
     }, [props.topic.comment])
 
+
     useEffect(() => {
-        setAnswer(props.topic.answer) // 设置答案
+        set_answer(props.topic.answer)
     }, [props.topic.answer])
 
+
+    function pass() {
+        props.pass_cb({
+            _id: props.topic._id,
+            pass: true,
+            is_corret: true,
+            comment: corret
+        })
+        set_corret('')
+    }
+
+    function no_pass() {
+        props.no_pass_cb({
+            _id: props.topic._id,
+            pass: false,
+            is_corret: true,
+            comment: corret
+        })
+        set_corret('')
+    }
+
     function submit_answer() {
+        console.log(1111111111)
         if (answer.trim()) {
             props.answer_cb({
                 answer,
-                _id: props.topic._id
+                _id: props.topic._id,
             })
         }
-        setAnswer('')
+
+        set_answer('')
     }
 
     return (
         <div className={styles.wrap}>
             <div className={styles.title}>
                 题目
+                {
+                    props.type === 'read' ?
+                        (
+                            <span className={styles.span_tag}>
+                                {
+                                    props.topic.pass ?
+                                        (
+                                            <Tag color="green">通过</Tag>
+                                        ) : (
+                                            <Tag color="red">不通过</Tag>
+                                        )
+                                }
+                            </span>
+                        ) : null
+                }
             </div>
             <p className={styles.content}>
                 {props.topic.title}
@@ -62,26 +101,70 @@ const TopicCp: React.FC<Iprops> = (props) => {
             <p className={styles.content}>
                 <Input.TextArea
                     value={answer}
-                    rows={4} // 设置行数
+                    rows={4}
                     placeholder="请作答"
                     className={styles.customInput}
-                    disabled={props.type !== 'exam'} // 是否禁用
-                    onChange={answer_change} // 输入框改变
+                    disabled={props.type !== 'exam'}
+                    onChange={answer_change}
                 />
             </p>
             {
                 props.type === 'exam' ?
                     <Button
-                        type='primary'
+                        type="primary"
                         className={styles.answer_btn}
                         onClick={submit_answer}
-                        size='large'
+                        size="large"
                     >
                         保存作答
                     </Button> : null
+            }
+
+            {
+                props.type !== 'exam' ?
+                    (
+                        <>
+                            <div className={styles.title}>
+                                我的批阅
+                            </div>
+                            <p className={styles.content}>
+                                <Input.TextArea
+                                    value={corret}
+                                    rows={4}
+                                    placeholder="请作答"
+                                    className={styles.customInput}
+                                    onChange={corret_change}
+                                    disabled={props.type !== 'corret'}
+                                />
+                            </p></>
+                    ) : null
+            }
+            {
+                props.type === 'corret' ?
+                    (
+                        <div className={styles.submit_wrap}>
+                            <Button
+                                type="primary"
+                                className={styles.btn}
+                                onClick={pass}
+                                size="large"
+                            >
+                                通过
+                            </Button>
+                            <Button
+                                type="primary"
+                                danger
+                                className={styles.btn}
+                                onClick={no_pass}
+                                size="large"
+                            >
+                                不通过
+                            </Button>
+                        </div>
+                    ) : null
             }
         </div>
     )
 }
 
-export default TopicCp;
+export default TopicCp

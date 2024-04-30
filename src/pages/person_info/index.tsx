@@ -54,7 +54,7 @@ function PersonInfo() {
             ])
 
         }
-    }, [isEdit]);
+    }, [isEdit, userInfo, form]);
 
 
     const onFinishFailed = () => {
@@ -126,7 +126,7 @@ function PersonInfo() {
                     layout='horizontal' // 表单布局
                     ref={formRef} // 表单ref
                     onFinish={onFinish} // 提交表单
-                    onFieldsChange={onFinishFailed} // 表单字段变化
+                    onFinishFailed={onFinishFailed} // 提交失败
                     labelAlign='left' // label对齐方式
                 >
                     <Form.Item

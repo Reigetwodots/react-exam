@@ -2,11 +2,10 @@ import styles from './index.module.scss'
 import logo from './assets/logo.png'
 import avatar from './assets/avatar.png'
 import { useNavigate } from 'react-router-dom'
-import { Avatar, Badge, Typography, Dropdown, List, Popover, Button, message } from 'antd'
-import { useAppDispatch, useAppSelector } from '@/store'
+import { Avatar, Badge, Typography, Dropdown, List, Popover, Button } from 'antd'
+import { useAppSelector } from '@/store'
 import { select_user_info } from '@/store/slice/user'
 import { getImgUrl } from '@/util'
-import axios from '@/util/http'
 import { logoutRequest } from '../../util/request';
 import { useState } from 'react';
 

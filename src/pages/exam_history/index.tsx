@@ -17,7 +17,7 @@ const ExamHistory: FC = () => {
      */
     useEffect(() => {
         dispatch(get_exam_history({}))
-    }, [])
+    }, [dispatch])
 
     function read_exam_click(item: any) {
         if (item.is_judge) {

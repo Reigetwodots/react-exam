@@ -1,0 +1,32 @@
+:global {
+    .subject_manage_wrap .ant-table-row-level-0{
+        background: rgb(205, 196, 196) !important;
+    }
+
+    // .subject_manage_wrap .ant-table-row-level-0:hover{
+    //     background: rgb(205, 196, 196) !important;
+    // }
+
+    .subject_manage_wrap  .ant-table-row-level-0 .ant-table-cell-row-hover {
+        background: rgb(205, 196, 196) !important;
+    }
+}
+
+// .ant-table-row-level-0{
+//     background: red !important;
+// }
+
+.wrap {
+    height: 100%;
+    /* background: pink; */
+}
+.my-4{
+    margin:16px;
+}
+.my-6{
+    margin:24px;
+}
+.my-8{
+    margin:32px;
+}
+

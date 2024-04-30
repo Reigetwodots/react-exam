@@ -19,7 +19,7 @@ function ExamSelect() {
 
     useEffect(() => {
         dispatch(get_subject_tree_async()); // 获取科目树
-    }, []);
+    }, [dispatch]);
 
     // 选择二级科目 跳转可以选择的考试题目
     const handleJump = () => {
@@ -38,10 +38,6 @@ function ExamSelect() {
         }
         dispatch(set_current_two_subject(item.value)); // 设置当前二级科目
     }
-
-
-
-
 
     return (
         <>

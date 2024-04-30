@@ -16,7 +16,7 @@ function Layout() {
 
     useEffect(() => {
         dispatch(get_menu_async())
-    }, [])
+    }, [dispatch])
 
     return (
         <div className={classnames({

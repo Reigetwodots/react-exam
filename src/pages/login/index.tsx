@@ -8,8 +8,8 @@ import login_title_en from './assets/login_title_en.png'
 import { useNavigate } from 'react-router'
 import { useAppDispatch } from '@/store/index';
 import { set_user_info } from '@/store/slice/user';
-import { loginPost, LoginBody, UserInfo, AxiosRes } from '@/util/request';
-import axios from 'axios'
+import { loginPost, LoginBody } from '@/util/request';
+
 
 
 const COUNT = 60; // 倒计时时间
@@ -18,7 +18,7 @@ const LoginPage: FC = () => {
 
     const [count, setCount] = useState(0); // 倒计时
     const [form] = Form.useForm(); // 表单
-    const [messageApi, contextHolder] = message.useMessage(); // 全局提示
+    const [, contextHolder] = message.useMessage(); // 全局提示
     const dispatch = useAppDispatch();
     const navigate = useNavigate(); // 路由跳转
 

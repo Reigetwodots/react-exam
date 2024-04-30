@@ -1,5 +1,5 @@
 import React, { useEffect, } from 'react';
-import { Table, Divider, Pagination } from 'antd';
+import { Table, Divider, Pagination, Space } from 'antd';
 import { useAppDispatch } from '@/store'
 import { set_is_show_user_edit_modal, set_current_edit_userinfo, get_student_async, select_user_student_list_data, select_student_list_search_params, select_student_list_current_page, set_student_list_current_page } from '../../store/slice/user';
 import { get_subject_tree_async } from '@/store/slice/subject';
@@ -52,6 +52,16 @@ const ListTable = () => {
             title: '姓名',
             dataIndex: 'name',
             key: 'name',
+            render: (dom: any, entity: any) => {
+                return (
+                    <a
+                        onClick={() => {
+                        }}
+                    >
+                        {dom}
+                    </a>
+                );
+            },
         },
         {
             title: '当前薪资',
@@ -95,11 +105,11 @@ const ListTable = () => {
             title: '操作',
             key: 'action',
             render: (text: any, record: any) => (
-                <span>
+                <Space size="middle" >
                     <a key='jurisdictionEdit' onClick={() => edit_click(record)}>编辑</a>
                     <Divider type="vertical" />
                     <a key='delete' onClick={() => delete_click(record)}>删除</a>
-                </span>
+                </Space>
             ),
         },
     ]

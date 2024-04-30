@@ -31,13 +31,14 @@ function App() {
       navigate('/login')
     }
     )
-  }, [])
+  }, [dispatch, navigate])
 
   return (
     <Routes>
+      <Route path={'/'} element={<Navigate to={routersData.login.path}></Navigate>}></Route>
+      <Route path={routersData.login.path} element={<Login></Login>}></Route>
+
       <Route element={<Layout />}>
-        <Route path={'/'} element={<Navigate to={routersData.login.path}></Navigate>}></Route>
-        <Route path={routersData.login.path} element={<Login></Login>}></Route>
         {/*页面12： 管理员管理 （超级管理员） */}
         <Route path={routersData.admin_manage.path} element={<AdminManage />}></Route>
         {/* 页面8： 批改试卷（管理员） */}

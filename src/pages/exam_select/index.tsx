@@ -39,10 +39,6 @@ function ExamSelect() {
         dispatch(set_current_two_subject(item.value)); // 设置当前二级科目
     }
 
-
-
-
-
     return (
         <>
             <div className={styles.wrap}>

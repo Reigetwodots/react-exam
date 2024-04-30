@@ -1,7 +1,19 @@
+import ListTable from "./ListTable"
+import Search from "./Search"
+import Modal from "./Modal"
+import useRenderCheck from '../../hooks/renderCheck';
+
+
+
 function StudentManage() {
+
+    useRenderCheck('StudentManage')
+
     return (
-        <div>
-            学生管理
+        <div className="wrap" >
+            <Search></Search>
+            <ListTable></ListTable>
+            <Modal />
         </div>
     )
 }

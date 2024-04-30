@@ -21,7 +21,7 @@ export default function TopicDetail() {
             dispatch(set_subject_active_two(null))
             dispatch(set_subject_active_topic(null))
         }
-    }, [])
+    }, [dispatch])
     useEffect(() => {
         if (!currentTopic) {
             reset() // 重置表单
@@ -46,7 +46,7 @@ export default function TopicDetail() {
                 setFileList([])
             }
         }
-    }, [currentTopic?._id])
+    }, [currentTopic, form])
 
     // 重置表单
     const reset = () => {

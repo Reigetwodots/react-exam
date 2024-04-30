@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./index.module.css";
-import { Button, Divider, Input, Empty } from 'antd';
+import { Button } from 'antd';
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from '@/store';
 import { select_exam_topic_list, set_current_exam_topic_id, select_current_exam_topic, get_corret_exam_async, set_exam_corret } from '@/store/slice/subject';
@@ -16,7 +16,6 @@ function CorretExam() {
     const topic_list: any[] = useAppSelector(select_exam_topic_list) // 题目列表
     const current_exam_topic: any = useAppSelector(select_current_exam_topic) // 当前选中的题目
     const [can_submit, set_can_submit] = useState(false) // 是否可以提交
-    const [corret, set_corret] = useState('') // 批阅
 
     useEffect(() => {
         let flag = false
@@ -25,12 +24,12 @@ function CorretExam() {
         }
         )
         set_can_submit(flag)
-    }, [])
+    }, [topic_list])
 
     useEffect(() => {
         const exam_id: any = params.exam_id
         dispatch(get_corret_exam_async(exam_id))
-    }, [])
+    }, [dispatch, params.exam_id])
 
     function topic_click(item: any) {
         if (item._id !== current_exam_topic._id) {

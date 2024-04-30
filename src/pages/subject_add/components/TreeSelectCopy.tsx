@@ -34,7 +34,7 @@ function TreeSelectCp() {
     useEffect(() => {
         if (!currentlesson?.value) return
         dispatch(get_topic_two_list(currentlesson.value))
-    }, [currentlesson?.value])
+    }, [currentlesson?.value, dispatch])
 
     // 选择学科
     const handleLessonChange = (value: string, labelList: ReactNode[]) => {

@@ -2,17 +2,15 @@ import { useEffect } from "react";
 import styles from "./read_exam.module.css";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from '@/store';
-import { select_exam_topic_list, set_exam_topic_list, set_exam_answer, get_corret_exam_async } from '../../store/slice/subject';
+import { select_exam_topic_list, set_exam_topic_list, get_corret_exam_async } from '../../store/slice/subject';
 import TopicCp from "@/common_components/topic";
-import { useSelector } from "react-redux";
-import { get } from "http";
 
 
 function ReadExam() {
 
     const dispatch = useAppDispatch()
     const params = useParams()
-    const topic_list: any[] = useSelector(select_exam_topic_list)
+    const topic_list: any[] = useAppSelector(select_exam_topic_list)
 
     useEffect(() => {
         const exam_id: any = params.exam_id
@@ -20,7 +18,7 @@ function ReadExam() {
         return () => {
             dispatch(set_exam_topic_list([]))
         }
-    }, [])
+    }, [dispatch, params.exam_id])
 
 
     return (

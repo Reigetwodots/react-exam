@@ -29,7 +29,8 @@ const App: React.FC = () => {
         if (path_key) {
             setCurrent(path_key)
         }
-    }, [])
+    }, [path_key]) // 需要传入依赖才解决跳转问题
+
     const onClick: MenuProps['onClick'] = (e) => {
         setCurrent(e.key);
         const path = menus.find((item) => {
@@ -37,7 +38,13 @@ const App: React.FC = () => {
         })?.path as string
         Navigate(path)
     };
-    return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={menus} />;
+    return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={menus} >
+        {/* {menus.map((item) => ( // 为Menu.Item添加key
+            <Menu.Item key={item.key}>
+                {item.label}
+            </Menu.Item>
+        ))} */}
+    </Menu>;
 };
 
 export default App;

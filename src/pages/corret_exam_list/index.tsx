@@ -8,9 +8,6 @@ import { Tag, Space, Badge } from 'antd'
 import { useNavigate } from 'react-router';
 import dayjs from 'dayjs'
 import Search from './search'
-import { current } from '@reduxjs/toolkit';
-import { text } from 'stream/consumers';
-import { title } from 'process';
 
 const PAGE_COUNT = 10; // 每页显示的条数
 
@@ -30,7 +27,7 @@ function CorretExamList() {
 
     useEffect(() => {
         dispatch(get_exam_history({})) // 获取考试历史数据
-    }, [])
+    }, [dispatch])
 
     function read_exam_click(item: any) { // 阅卷点击
         if (item.is_judge) { // 如果已经批阅
@@ -46,7 +43,6 @@ function CorretExamList() {
         dispatch(set_exam_list_data({
             current_page: count // 设置当前页
         }))
-
         dispatch(get_exam_history({
             ...exam_list_data.search_params, // 保留搜索参数
             skip: PAGE_COUNT * (count - 1) // 计算跳过的条数

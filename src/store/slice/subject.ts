@@ -219,10 +219,11 @@ export const select_current_exam_topic = (state: RootState) => {
     }) || {}
   );
 };
+// 获取考试历史数据
 export const select_exam_history_data = (state: RootState) => {
   return state.subject.exam_list_data;
 };
-
+// 获取一级科目
 export const select_subject_one = (state: RootState) => {
   return state.subject.subject_one;
 };

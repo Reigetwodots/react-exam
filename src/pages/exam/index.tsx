@@ -15,10 +15,10 @@ import TopicCp from "@/common_components/topic";
 
 function Exam() {
     const dispatch = useAppDispatch()
-    const navigate = useNavigate()
-    const [, set_answer] = useState('')
-    const [can_submit, set_can_submit] = useState(false)
-    const params: any = useParams()
+    const navigate = useNavigate() // 路由跳转
+    const [, set_answer] = useState('') // 答案
+    const [can_submit, set_can_submit] = useState(false) // 是否可以提交
+    const params: any = useParams() // 获取路由参数
 
     // 题目列表
     const topic_list: any[] = useAppSelector(select_exam_topic_list)
@@ -27,27 +27,20 @@ function Exam() {
 
     useEffect(() => {
         let flag = false
-        flag = topic_list.every((item) => {
+        flag = topic_list.every((item) => { // 检测topic_list中的answer是否都是true
             return item.answer
         })
-
-        set_can_submit(flag)
+        set_can_submit(flag) // 如果所有的answer都是true，那么就可以提交
     }, [topic_list])
 
-
     useEffect(() => {
-        dispatch(get_exam_async(params.exam_id))
+        dispatch(get_exam_async(params.exam_id)) //在页面加载的时候，获取考试的题目列表，即是获取二级课程分类下的题目列表
     }, [dispatch, params.exam_id])
-
-    //   function textarea_change(e: any) {
-    //     set_answer(e.target.value)
-    //   }
 
     function topic_click(item: any) {
         if (item._id !== current_exam_topic._id) {
             set_answer('')
         }
-
         dispatch(set_current_exam_topic_id(item._id))
     }
 
@@ -56,16 +49,10 @@ function Exam() {
     }
 
     async function submit_click() {
-        // await axios.post('/api/exam', {
-        //   topic_list,
-        //   two_id: params.exam_id
-        // })
-
         await examPost({
             topic_list,
             two_id: params.exam_id
         })
-
         navigate('/exam_history')
     }
 

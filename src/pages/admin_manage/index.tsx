@@ -1,34 +1,21 @@
-import { Table, Form, Button, Input } from "antd";
-import { useAppDispatch, useAppSelector } from "@/store";
-import { get_admin_async, select_user_admin_list } from "@/store/slice/user";
-import { useState, useEffect } from "react";
+import { useEffect, } from 'react';
+import { Table, Input, Button } from 'antd';
+import { useAppDispatch } from '@/store'
 import styles from './index.module.css'
-import { addAdminRequest } from "@/util/request";
+import { useSelector } from 'react-redux';
+import { get_admin_async, select_user_admin_list } from '@/store/slice/user';
+import { useState } from 'react';
+import { addAdminRequest } from '@/util/request';
 
 function AdminManage() {
-    const dispatch = useAppDispatch()
-    const admin_datas = useAppSelector(select_user_admin_list)
-    const [form] = Form.useForm()
-    const [data, setData] = useState(admin_datas.map((item, index) => ({ index: index + 1, ...item })))
+    const dispatch = useAppDispatch();
+    const admin_list = useSelector(select_user_admin_list)
+    const data = admin_list.map((item, index) => ({ index: index + 1, ...item }));
+    const [phone, set_phone] = useState('')
 
     useEffect(() => {
         dispatch(get_admin_async())
-        setData(admin_datas.map((item, index) => ({ index: index + 1, ...item })));
-    }, [dispatch, admin_datas]);
-
-    async function add_admin() {
-        const form_data = await form.validateFields()
-        Object.keys(form_data).forEach((key) => {
-            if (!form_data[key]) {
-                delete form_data[key]
-            }
-        })
-
-        await addAdminRequest(form_data)
-        dispatch(get_admin_async())
-        setData(admin_datas.map((item, index) => ({ index: index + 1, ...item })))
-
-    }
+    }, [dispatch])
 
     const columns = [
         {
@@ -54,36 +41,46 @@ function AdminManage() {
             dataIndex: 'edu',
         },
         {
+            title: '微信',
+            dataIndex: 'vChat',
+        },
+        {
             title: '手机号码',
             dataIndex: 'phone',
         },
-    ]
+    ];
 
+    function input_change(e: any) {
+        set_phone(e.target.value)
+    }
+
+    async function add_admin() {
+        if (!phone) {
+            return
+        }
+        await addAdminRequest({
+            phone
+        })
+
+        dispatch(get_admin_async())
+    }
     return (
         <div>
             <div className={styles.search_wrap}>
-                <Form
-                    form={form}
-                    layout='inline'
-                >
-                    <Form.Item name="phone" label="电话">
-                        <Input
-                            className={styles.input}
-                            width={200}
-                            placeholder="请输入phone"
-                        ></Input>
-                    </Form.Item>
-                    <Form.Item>
-                        <Button className={styles.btn} type="primary" onClick={add_admin}>新增管理员</Button>
-                    </Form.Item>
-                </Form>
+                <Input
+                    value={phone}
+                    onChange={input_change}
+                    width="200px"
+                    className={styles.input}
+                    placeholder='请输入phone'
+                />
+                <Button className={styles.btn} type='primary' onClick={add_admin}>新增</Button>
             </div>
             <Table
-                columns={columns}
-                dataSource={data}
-            ></Table>
+                dataSource={data} columns={columns}
+            />
         </div>
     )
 }
 
-export default AdminManage;
+export default AdminManage

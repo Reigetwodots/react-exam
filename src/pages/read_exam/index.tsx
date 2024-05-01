@@ -31,7 +31,7 @@ function ReadExam() {
                         topic_list.map((item, index) => {
                             return (
                                 <div
-                                    key={index}
+                                    key={item._id}
                                     className={`${styles.questiontab}`}
                                 >
                                     <div
@@ -64,7 +64,9 @@ function ReadExam() {
                     {
                         topic_list.map((item) => {
                             return (
-                                <div className={styles.topic_wrap}>
+                                <div
+                                    key={item._id}
+                                    className={styles.topic_wrap}>
                                     <TopicCp key={item._id} topic={item} type='read' />
                                 </div>
                             )

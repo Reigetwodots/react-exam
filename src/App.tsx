@@ -19,6 +19,7 @@ import { useAppDispatch } from './store';
 import { get_user_info } from './store/slice/user';
 import EventBus from '@/util/event'
 import { useNavigate } from 'react-router-dom';
+import { error } from 'console';
 
 function App() {
   const dispatch = useAppDispatch();

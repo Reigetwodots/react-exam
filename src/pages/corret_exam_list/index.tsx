@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { Table, Pagination } from 'antd';
-// import { tableDefaultData, tableColumns } from './interface'
 import styles from './index.module.css'
 import { useAppSelector, useAppDispatch } from '@/store';
-import { get_exam_history, select_corret_exam_list_loading, select_exam_history_data, set_exam_list_data } from '../../store/slice/subject';
+import { get_exam_history, select_corret_exam_list_loading, select_exam_history_data, set_exam_list_data } from '@/store/slice/subject';
 import { Tag, Space, Badge } from 'antd'
 import { useNavigate } from 'react-router';
 import dayjs from 'dayjs'

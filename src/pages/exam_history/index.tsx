@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react'
 import { Table } from 'antd'
 import styles from './index.module.css'
 import { useAppSelector, useAppDispatch } from '@/store';
-import { get_exam_history, select_exam_history_data } from '../../store/slice/subject';
+import { get_exam_history, select_exam_history_data } from '@/store/slice/subject';
 import { Tag, Space, Badge } from 'antd'
 import { useNavigate } from 'react-router';
 
@@ -55,8 +55,6 @@ const ExamHistory: FC = () => {
         }
     }, {
         title: '操作',
-        dataIndex: '',
-        key: 'x',
         render: (row: any) => {
             return <Tag onClick={() => {
                 read_exam_click(row)
@@ -66,7 +64,12 @@ const ExamHistory: FC = () => {
 
     return <div className={styles["exam-history"]}>
         <div className='table-list-wrapper'>
-            <Table dataSource={exam_list_data.list} columns={tableColumns} pagination={false} />
+            <Table
+                dataSource={exam_list_data.list}
+                columns={tableColumns}
+                pagination={false}
+                rowKey='_id'
+            />
         </div>
     </div>;
 }

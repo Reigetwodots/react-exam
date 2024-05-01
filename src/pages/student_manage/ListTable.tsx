@@ -120,6 +120,7 @@ const ListTable = () => {
                 columns={columns}
                 dataSource={student_list}
                 pagination={false}
+                rowKey='_id'
             ></Table>
             <Pagination
                 className={styles.pagination}

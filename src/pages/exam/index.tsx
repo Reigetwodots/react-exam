@@ -9,8 +9,8 @@ import {
     set_current_exam_topic_id,
     select_current_exam_topic,
     set_exam_answer
-} from '../../store/slice/subject';
-import { examPost } from '../../util/request';
+} from '@/store/slice/subject';
+import { examPost } from '@/util/request';
 import TopicCp from "@/common_components/topic";
 
 function Exam() {

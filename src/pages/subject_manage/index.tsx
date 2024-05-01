@@ -32,8 +32,8 @@ function SubjectManage() {
         },
         {
             title: "课程类别",
-            dataIndex: "title",
-            key: "title",
+            dataIndex: "parent",
+            key: "parent",
             render(a, b, c) {
                 return <div>{b.parent || b.title}</div>;
             },
@@ -45,12 +45,13 @@ function SubjectManage() {
         },
         {
             title: "操作",
+            dataIndex: "operation",
+            key: "operation",
             render(a, b, c) {
                 return isDelete(b) ? (
                     <Button
                         onClick={handleDelete.bind(null, b.value, b.title, getRemoteData)}
                         danger
-                        ghost
                         type="link">
                         删除
                     </Button>
@@ -83,6 +84,7 @@ function SubjectManage() {
                     }}
                     dataSource={transformData}
                     columns={columns}
+                    rowKey="value"
                 />
             ) : null}
         </div>

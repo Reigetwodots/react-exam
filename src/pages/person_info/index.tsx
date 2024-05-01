@@ -9,8 +9,8 @@ import { useAppDispatch, useAppSelector } from '@/store'
 import { select_user_info } from '@/store/slice/user'
 import { getImgUrl, upload_imgs } from '@/util'
 import dayjs from 'dayjs'
-import { get_user_info } from '../../store/slice/user';
-import { userInfoPatch } from '../../util/request';
+import { get_user_info } from '@/store/slice/user';
+import { userInfoPatch } from '@/util/request';
 
 const eduOptions = ['初中', '高中', ' 大专', '成人本科', '专升本', '二本', '一本', '研究生'] // 学历选项
 

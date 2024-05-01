@@ -1,5 +1,5 @@
 import { Modal } from "antd";
-import { subject2Delete } from '../../util/request';
+import { subject2Delete } from '@/util/request';
 
 export interface Course {
     title: string;

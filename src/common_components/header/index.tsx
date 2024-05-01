@@ -6,7 +6,7 @@ import { Avatar, Badge, Typography, Dropdown, List, Popover, Button } from 'antd
 import { useAppSelector } from '@/store'
 import { select_user_info } from '@/store/slice/user'
 import { getImgUrl } from '@/util'
-import { logoutRequest } from '../../util/request';
+import { logoutRequest } from '@/util/request';
 import { useState } from 'react';
 
 const { Text } = Typography

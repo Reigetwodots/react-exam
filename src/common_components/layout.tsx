@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import Header from "./header";
 import Menu from "./menu";
-import useIsShowMenu from "../hooks/useIsShowMenu";
-import useIsShowHeader from "../hooks/useIsShowHeader";
-import { useAppDispatch, useAppSelector } from '../store/index';
+import useIsShowMenu from "@/hooks/useIsShowMenu";
+import useIsShowHeader from "@/hooks/useIsShowHeader";
+import { useAppDispatch, useAppSelector } from '@/store/index';
 import { select_user_info, get_menu_async } from "@/store/slice/user";
 import { useEffect } from "react";
 import classnames from 'classnames'

@@ -77,7 +77,7 @@ function AdminManage() {
                 <Button className={styles.btn} type='primary' onClick={add_admin}>新增</Button>
             </div>
             <Table
-                dataSource={data} columns={columns}
+                dataSource={data} columns={columns} rowKey='_id'
             />
         </div>
     )

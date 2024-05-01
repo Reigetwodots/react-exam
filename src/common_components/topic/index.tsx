@@ -56,7 +56,7 @@ const TopicCp: React.FC<Iprops> = (props) => {
 
     function submit_answer() {
         console.log(1111111111)
-        if (answer.trim()) {
+        if (answer && answer.trim()) {
             props.answer_cb({
                 answer,
                 _id: props.topic._id,

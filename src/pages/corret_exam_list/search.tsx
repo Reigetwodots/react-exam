@@ -1,7 +1,7 @@
 import { Button, Input, Select, Form } from "antd";
 import { useEffect } from "react";
 import { useAppDispatch } from "@/store";
-import { get_subject_one, get_exam_history, set_exam_list_data } from '../../store/slice/subject';
+import { get_subject_one, get_exam_history, set_exam_list_data } from '@/store/slice/subject';
 import styles from './index.module.css'
 
 const judge_options = [

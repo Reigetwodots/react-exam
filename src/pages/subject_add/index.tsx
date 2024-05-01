@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import {
     get_subject_tree_async,
     set_subject_active_two
-} from '../../store/slice/subject';
+} from '@/store/slice/subject';
 import { useAppDispatch } from '@/store';
 import SubjectDetail from './components/TopicDetail';
 import SubjectList from './components/TopicList';

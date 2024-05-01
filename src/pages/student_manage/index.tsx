@@ -1,7 +1,7 @@
 import ListTable from "./ListTable"
 import Search from "./Search"
 import Modal from "./Modal"
-import useRenderCheck from '../../hooks/renderCheck';
+import useRenderCheck from '@/hooks/renderCheck';
 
 
 

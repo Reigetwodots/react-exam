@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from '@/store';
 import { select_exam_topic_list, set_current_exam_topic_id, select_current_exam_topic, get_corret_exam_async, set_exam_corret } from '@/store/slice/subject';
 import { corretExamPost } from '@/util/request';
-import TopicCp from '../../common_components/topic/index';
+import TopicCp from '@/common_components/topic/index';
 
 
 function CorretExam() {

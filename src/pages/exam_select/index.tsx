@@ -7,7 +7,7 @@ import {
 } from "@/store/slice/subject";
 import colorsData from "./color.json";
 import { useNavigate } from "react-router-dom";
-import { select_subject_tree, select_current_two_subject } from '../../store/slice/subject';
+import { select_subject_tree, select_current_two_subject } from '@/store/slice/subject';
 import { useAppDispatch, useAppSelector } from '@/store';
 
 
